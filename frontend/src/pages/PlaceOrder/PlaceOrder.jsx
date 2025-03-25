@@ -25,12 +25,12 @@ const PlaceOrder = () => {
   }
 
   const placeOrder = async (event)=>{
-    event.preventDefault;
+    event.preventDefault();
     let orderItems =[];
-    food_list.map(()=>{
-      if(cartItems[cartItems._id]>0) {
+    food_list.map((item)=>{
+      if(cartItems[item._id]>0) {
         let itemInfo = item;
-        teamInfo[quantity] =cartItems[item._id];
+        itemInfo["quantity"] =cartItems[item._id];
         orderItems.push(itemInfo);
       }
     })
@@ -38,7 +38,7 @@ const PlaceOrder = () => {
     let orderData ={
       address:data,
       items:orderItems,
-      amount:getTotalCartAmount()+2,
+      amount:getTotalCartAmount()+20,
 
     }
     let response = await axios.post(url+"/api/order/place",orderData,{headers:{token}})
@@ -104,4 +104,4 @@ const PlaceOrder = () => {
   )
 }
 
-export default PlaceOrder
+export default PlaceOrder;
